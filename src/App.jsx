@@ -46,11 +46,14 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Donation from "./pages/Donation";
 import Mentorship from "./pages/Mentorship";
+
+
 
 const router = createBrowserRouter([
   {
@@ -61,7 +64,8 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "blog", element: <Blog /> },
       { path: "donation", element: <Donation /> },
-      { path: "mentorship", element: <Mentorship /> },
+      { path: "mentorship", element: <Mentorship  /> },
+  
       { path: "*", element: <h1>404 - Page Not Found</h1> },
     ],
   },
