@@ -10,10 +10,10 @@ const Mentorship = () => {
       <div className="relative w-full h-52 bg-cover bg-no-repeat bg-center bg-[url('/images/mentors.jpg')] md:h-96">
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full">
-          <h2 className="font-bold text-4xl mt-4 text-blue-100 text-center md:text-5xl">
+          <h2 className="font-bold text-4xl mt-4 text-blue-100 text-center md:text-5xl ">
             A Stronger You, With Support
           </h2>
-          <p className="mt-2 md:mt-4 text-white text-lg">
+          <p className="mt-2 md:mt-4 text-white text-lg [word-spacing:0.1em] tracking-wide">
             You don't have to walk alone
           </p>
         </div>
@@ -28,7 +28,7 @@ const Mentorship = () => {
         />
         <div className="md:w-[43%] py-10 relative">
           <FaQuoteLeft className="text-4xl text-blue-500 absolute left-0 top-12 transform -translate-y-1/2" />
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto px-4 py-8 relative z-10">
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto px-4 py-8 relative z-10 [word-spacing:0.2em] tracking-wider">
             At The Survivors Lounge CIC, we believe healing happens not just
             through services, but through connection. Our mentorship programme
             pairs survivors and individuals facing personal adversity with
@@ -54,7 +54,9 @@ const Mentorship = () => {
               src={duty.img}
               alt=""
             />
-            <h4 className="font-semibold mt-4 text-lg">{duty.title}</h4>
+            <h4 className="font-semibold mt-4 text-lg [word-spacing:0.1em] tracking-wide">
+              {duty.title}
+            </h4>
           </div>
         ))}
       </div>
@@ -63,9 +65,12 @@ const Mentorship = () => {
         Get a Mentor
       </button>
 
-      <p className='my-4 text-center px-2'>Interested in becoming a mentor to help others find their way? <a className='no-underline text-blue-600 font-italic hover:underline cursor-pointer'>Become a Volunteer</a></p>
-
-      
+      <p className="my-4 text-center px-2 ">
+        Interested in becoming a mentor to help others find their way?{" "}
+        <a className="no-underline text-blue-600 font-italic hover:underline cursor-pointer">
+          Become a Volunteer
+        </a>
+      </p>
 
       <h3 className="font-bold mt-4 text-2xl text-center">
         Our Skill Enhancement Program
