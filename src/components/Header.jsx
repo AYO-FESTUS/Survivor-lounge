@@ -18,12 +18,14 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <img
-          src="/icons/tsl-gold.png"
-          alt=""
-          className="w-16 h-16"
-        />
+      <div className="max-w-7xl mx-auto pr-4 flex items-center justify-between">
+        {/* <div className="h-16 w-16 bg-contain bg-no-repeat bg-center bg-[url('/logos/gold-logo.jpg')] border-2"> */}
+          <img
+            src="/logos/logo-no-bg.png"
+            alt=""
+            className="h-20 w-24 md:w-16 md:h-16"
+          />
+        {/* </div> */}
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 items-center">
@@ -41,7 +43,7 @@ const Header = () => {
             </NavLink>
           ))}
           <NavLink
-            to="/donate"
+            to="/donation"
             className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
           >
             Donate
@@ -73,7 +75,7 @@ const Header = () => {
               </NavLink>
             ))}
             <NavLink
-              to="/donate"
+              to="/donation"
               className="bg-blue-600 text-white px-4 py-2 rounded-md text-center hover:bg-blue-700"
               onClick={() => setMenuOpen(false)}
             >
