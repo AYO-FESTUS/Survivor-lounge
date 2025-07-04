@@ -11,7 +11,7 @@ const Subscribe = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-4 bg-white rounded shadow">
+    <div className="w-full max-w-md mx-auto p-4 rounded shadow">
       <h3 className="text-xl font-semibold mb-2 text-center">
         Stay tuned for Updates by signing up for our Newsletter
       </h3>

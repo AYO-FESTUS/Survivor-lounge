@@ -21,24 +21,6 @@ const Blog = () => {
       <div className="font-poppins">
         <section className="relative h-fit bg-[#f5f5f5] font-['Poppins']">
           {/* Background Image */}
-          {/* <div className="relative w-full h-[90vh]">
-            <img
-              src="./public/hero imag/Premium Photo _ Group of people holding hand toget.jpeg"
-              alt="hero"
-              className="w-full h-full object-cover"
-            />
-
-            <div className="absolute inset-0 bg-dark bg-opacity-50 z-[1]"></div>
-
-            <div className="absolute inset-0 z-[2] flex flex-col items-center justify-center text-white px-4 text-center">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4">
-                Finding Your Feet Again
-              </h1>
-              <span className="text-base sm:text-lg md:text-xl font-medium">
-                Services to Help Women After Crisis Care
-              </span>
-            </div>
-          </div> */}
 
           <div className="relative w-full h-52 bg-cover bg-no-repeat bg-center bg-[url('/hero/blog1.jpeg')] md:h-96">
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
@@ -47,7 +29,7 @@ const Blog = () => {
                 Finding Your Feet Again
               </h2>
               <p className="mt-2 md:mt-4 text-white text-center text-lg">
-                Services to Help Women After Crisis
+                Services for Crisis Help
               </p>
             </div>
           </div>
