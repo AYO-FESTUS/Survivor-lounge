@@ -11,8 +11,8 @@ import { FaLocationPin } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="bg-[#B89B5E] text-black py-6 w-full h-fit flex flex-col items-center">
-      <footer className=" px-4 h-fit flex flex-col items-center gap-6 md:flex-row md:items-start relative md:pb-10 md:justify-center">
-        <div className="w-full flex h-fit md:w-[45%]">
+      {/* <footer className="w-full px-4 border-2 h-fit flex flex-col items-center gap-6 relative md:pb-10 md:justify-center"> */}
+        <div className="w-full flex h-fit md:w-fit">
           {/* <img
             src="/logos/logo-no-bg.png"
             alt=""
@@ -41,7 +41,7 @@ const Footer = () => {
           </address>
         </div>
 
-        <div className="flex gap-4 md:mt-4 md:absolute md:bottom-0 md:gap-6 md:left-0">
+        <div className="flex gap-4 md:mt-4 md:gap-6">
           <a
             href="https://www.linkedin.com/"
             target="_blank"
@@ -73,27 +73,29 @@ const Footer = () => {
 
         {/* <div className="text-center [word-spacing:0.1em] tracking-wide flex w-[60%]"> */}
 
-        <div className="flex md:w-[60%] justify-center gap-4 mt-2 md:mt-0 text-sm md:text-[1.1rem] md:self-start md:pl-16">
-          <a
-            href="/privacy-policy"
-            className=" hover:underline"
-          >
-            Privacy Policy
-          </a>
-          <span className="hidden sm:inline">|</span>
-          <a
-            href="/safeguarding-policy"
-            className="hover:underline"
-          >
-            Safeguarding Policy
-          </a>
-        </div>
         {/* </div> */}
-      </footer>
-      <hr className="w-[90%] bg-black/80 my-6" />
-      <p className="font-semibold text-center">
+      {/* </footer> */}
+      <hr className="w-[90%] bg-black/80 mt-6 mb-2 " />
+      <div className="w-full h-fit md:flex md:justify-center md:items-center md:gap-6">
+      <div className="flex justify-center gap-4 text-sm md:text-[1.1rem] md:self-start md:pl-16 md:flex md:gap-6">
+        <a
+          href="/privacy-policy"
+          className=" hover:underline"
+        >
+          Privacy Policy
+        </a>
+        <span className="hidden sm:inline">|</span>
+        <a
+          href="/safeguarding-policy"
+          className="hover:underline"
+        >
+          Safeguarding Policy
+        </a>
+      </div>
+      <p className="font-semibold text-center md:text-xl">
         &copy; {new Date().getFullYear()} The Survivors Lounge CIC
       </p>
+      </div>
     </footer>
   );
 };

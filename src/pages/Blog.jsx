@@ -76,7 +76,7 @@ const Blog = () => {
   return (
     <div className="w-full bg-black">
       {/* Hero Section */}
-      <section className="relative w-full h-[90vh]">
+      <section className="relative w-full h-56 md:h-96">
         <img
           src="/hero imag/Premium Photo _ Group of people holding hand toget.jpeg"
           alt="People"
@@ -98,6 +98,7 @@ const Blog = () => {
         <h1 className="text-4xl font-bold my-6 text-center text-[#B89B5E]">
           Blog Stories
         </h1>
+
 
         {combinedPosts.map((post, index) => {
           const words = post.preview.split(" ");
