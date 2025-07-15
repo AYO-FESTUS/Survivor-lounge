@@ -10,11 +10,15 @@ const BlogPost = () => {
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "blog" && slug.current == $slug][0]{
+        `*[_type == "post" && slug.current == $slug][0]{
           title,
-          content,
-          mainImage{asset->{url}},
-          createdAt
+          body,
+          mainImage {
+            asset -> {
+              url
+            }
+          },
+          publishedAt
         }`,
         { slug }
       )
@@ -22,14 +26,16 @@ const BlogPost = () => {
       .catch(console.error);
   }, [slug]);
 
-  if (!post) return <div className="text-center py-8">Loading...</div>;
+  if (!post) return <div className="text-center py-8 text-white">Loading...</div>;
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-3xl">
+    <div className="container mx-auto px-4 py-8 max-w-3xl text-white">
       <h1 className="text-4xl font-bold mb-4 text-center">{post.title}</h1>
-      <p className="text-gray-500 mb-4 text-center">
-        {new Date(post.createdAt).toLocaleDateString()}
+
+      <p className="text-gray-400 mb-4 text-center">
+        {new Date(post.publishedAt).toLocaleDateString()}
       </p>
+
       {post.mainImage?.asset?.url && (
         <img
           src={post.mainImage.asset.url}
@@ -37,8 +43,9 @@ const BlogPost = () => {
           className="w-full h-auto rounded mb-6"
         />
       )}
-      <article className="pros max-w-none">
-        <PortableText value={post.content} />
+
+      <article className="prose prose-invert max-w-none">
+        <PortableText value={post.body} />
       </article>
     </div>
   );

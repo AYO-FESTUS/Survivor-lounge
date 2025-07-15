@@ -71,3 +71,35 @@ const TestimonialCarousel = () => {
 };
 
 export default TestimonialCarousel;
+
+
+
+<section className="bg-black py-16">
+  <div className="max-w-7xl mx-auto px-4 text-center">
+    <h2 className="text-4xl font-bold text-[#B89B5E] mb-12">
+       Get Support
+    </h2>
+
+    <div className="grid gap-8 grid-cols-1 md:grid-cols-1 text-left">
+     
+      {/* Get Support */}
+      <div className="bg-gray-900 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
+        <div>
+         
+          <p className="text-lg text-gray-100 max-w-2xl mx-auto px-4 py-8 [word-spacing:0.2em] tracking-wider">
+            If you are a survivor of abuse or a young adult seeking mentorship, we are here for you. <br /> Reach out to begin your journey of healing and growth.
+          </p>
+        </div>
+        
+
+
+  
+
+
+
+      </div>
+
+ 
+    </div>
+  </div>
+</section>

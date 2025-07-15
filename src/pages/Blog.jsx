@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { PortableText } from "@portabletext/react";
 import sanityClient from "../sanity";
 import {
   specialistServices,
@@ -21,15 +22,13 @@ const Blog = () => {
   const staticPosts = [
     {
       title: "Static Blog 1",
-      imageUrl:
-        "/blog imag/Servicio al cliente_ qué es y cómo brindar una ate.jpeg",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu libero quis libero vestibulum facilisis. Curabitur vehicula, odio at tincidunt dictum, lorem nisl finibus magna, et mattis purus mauris a felis. Fusce ac turpis ac magna fermentum fermentum. Integer sed tincidunt nulla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus at lectus sed neque ullamcorper fermentum.",
+      imageUrl: "/blog imag/Pretty Photos - Download Free High-Quality Picture.jpeg",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet sapien at mi ullamcorper, non dignissim justo fermentum. Nullam dignissim sapien ut sapien finibus, ac imperdiet ex eleifend. Suspendisse potenti. Pellentesque eget sapien neque. Morbi in mauris vel ligula pulvinar cursus at a nisi. Proin a arcu sit amet turpis fermentum cursus a ut erat. Curabitur condimentum mi ut erat commodo, vitae cursus est ultrices. Morbi eget turpis sit amet libero dictum dictum vitae in diam.Cras tincidunt nibh sed ligula tincidunt, sed tempus ante mattis. In non laoreet neque. Suspendisse potenti. Integer ac lorem et ante sodales porttitor nec ut odio. Etiam vel felis eros. Phasellus tempor tortor a nulla hendrerit, sit amet sollicitudin justo lobortis. Proin at ante ligula. Cras semper, diam a gravida facilisis, dolor augue vehicula mauris, nec tincidunt ante purus sed odio.",
     },
     {
       title: "Static Blog 2",
-      imageUrl:
-        "/blog imag/Individual Therapy Sessions in Central Texas _ Tay.jpeg",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, praesentium error. At ducimus, ex a iure amet nihil eligendi labore odit, sit officiis fugit dolorem soluta, animi laboriosam. Est quaerat similique vero natus voluptate voluptatum, obcaecati tempora sunt a molestiae cum. Recusandae beatae corrupti et eveniet temporibus quos maiores deserunt veniam!",
+      imageUrl: "/blog imag/Individual Therapy Sessions in Central Texas _ Tay.jpeg",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elitNam mollis arcu vitae justo fringilla, nec volutpat dolor euismod. Nullam non velit vitae augue accumsan tincidunt. Curabitur fringilla erat ut imperdiet volutpat. Pellentesque fermentum diam ut vestibulum rutrum. Donec posuere, sapien eget aliquam dapibus, arcu libero fermentum nisi, et porttitor erat mi nec nulla. Integer at ultrices lacus. Vivamus viverra orci eu semper tempor.Maecenas id diam eu nulla fringilla commodo. Curabitur tristique, lacus sed iaculis rutrum, nisl neque cursus purus, a efficitur augue felis id urna. Suspendisse ut viverra elit, a porta velit. Morbi at metus et felis aliquam posuere. In lobortis congue felis vel faucibus. In ut tortor felis.",
     },
   ];
 
@@ -37,13 +36,16 @@ const Blog = () => {
     sanityClient
       .fetch(
         `*[_type == "blog"] | order(_createdAt desc){
-        _id,
-        title,
-        "imageUrl": mainImage.asset->url,
-        body
-      }`
+          _id,
+          title,
+          "imageUrl": mainImage.asset->url,
+          content
+        }`
       )
-      .then((data) => setSanityPosts(data))
+      .then((data) => {
+        console.log("Sanity Data:", data);
+        setSanityPosts(data);
+      })
       .catch(console.error);
   }, []);
 
@@ -55,45 +57,50 @@ const Blog = () => {
     ...sanityPosts.map((post) => ({
       title: post.title,
       imageUrl: post.imageUrl,
-      text: (post.body && post.body[0]?.children[0]?.text) || "No content.",
+      body: post.content,
+      preview:
+        post.content
+          ?.map((block) =>
+            block.children?.map((child) => child.text).join(" ")
+          )
+          .join(" ") || "No content.",
     })),
-    ...staticPosts,
+    ...staticPosts.map((post) => ({
+      title: post.title,
+      imageUrl: post.imageUrl,
+      preview: post.text,
+      body: null,
+    })),
   ];
 
   return (
     <div className="w-full bg-black">
       {/* Hero Section */}
-      <section className="relative w-full h-52 md:96">
+      <section className="relative w-full h-[90vh]">
         <img
           src="/hero imag/Premium Photo _ Group of people holding hand toget.jpeg"
           alt="People"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/70 z-10"></div>
-
-        {/* Content on top of background */}
         <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center text-white max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-3xl font-bold mb-4 md:text-5xl">
             Finding Your Feet Again
           </h1>
-          {/* <h2 className="text-base sm:text-lg md:text-xl font-medium mb-6 tracking-wider">
-            Services to help women and young adults after crisis care.
-          </h2> */}
-          {/* <p className="text-base md:text-xl font-medium tracking-wider">
-            When emergency support ends, we connect survivors with practical and emotional pathways to rebuild, heal, and thrive.
-          </p> */}
+          <h2 className="text-base sm:text-lg md:text-xl font-medium mb-6 tracking-wider">
+            Services to help migrant women and young people needing mentorship
+          </h2>
         </div>
       </section>
 
       {/* Blog Posts Section */}
-      <div className="container mx-auto px-4 py-8 bg-black">
-        <h1 className="text-3xl font-bold my-6 text-center text-gray-100">
+      <div className="container mx-auto w-full px-4 py-8">
+        <h1 className="text-4xl font-bold my-6 text-center text-[#B89B5E]">
           Blog Stories
         </h1>
+
         {combinedPosts.map((post, index) => {
-          const words = post.text.split(" ");
+          const words = post.preview.split(" ");
           const previewWords = words.slice(0, 45).join(" ");
           const hasMore = words.length > 45;
           const isExpanded = expandedIndex === index;
@@ -107,27 +114,31 @@ const Blog = () => {
                 <img
                   src={post.imageUrl}
                   alt={post.title}
-                  className="w-full h-64 object-cover rounded mb-4"
+                  className="w-full object-cover rounded mb-4"
                 />
               )}
 
-              <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+              <h2 className="text-xl font-semibold mb-3 text-center text-white">
+                {post.title}
+              </h2>
 
-              <p className="mt-2 text-gray-700">
+              <div className="mt-2 text-black">
                 {!isExpanded ? (
                   <>
                     {previewWords}
                     {hasMore && "..."}
                   </>
+                ) : post.body ? (
+                  <PortableText value={post.body} />
                 ) : (
-                  post.text
+                  <p>{post.preview}</p>
                 )}
-              </p>
+              </div>
 
               {hasMore && (
                 <div className="flex justify-end mt-2">
                   <button
-                    className="flex items-center text-[#B89B5E] focus:outline-none"
+                    className="flex items-center text-gray-100 focus:outline-none"
                     onClick={() => toggleExpand(index)}
                   >
                     <span className="text-sm font-medium mr-2">
@@ -136,7 +147,7 @@ const Blog = () => {
                     {isExpanded ? (
                       <FaChevronUp className="text-[#B89B5E]" />
                     ) : (
-                      <FaChevronDown className="text-[#B89B5E] " />
+                      <FaChevronDown className="text-[#B89B5E]" />
                     )}
                   </button>
                 </div>
@@ -145,260 +156,11 @@ const Blog = () => {
           );
         })}
 
-        {/* UK Organisations & Services Section */}
-        <section className="max-w-4xl mx-auto px-4 mb-12 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-[#B89B5E]">
-            UK Organisations & Services Aligning with TSL’s Mission
-          </h2>
-          <p className="text-gray-100 text-lg sm:text-xl mb-8 text-center">
-            List of UK organisations supporting migrant women and young adults
-            with NRPF post-crisis, grouped by focus area with links and contact
-            details.{" "}
-          </p>
-          {/* Insert the categories here exactly as built previously */}
-          {/* Example: Specialist Services */}
-          {/* Specialist Services for Migrant Women with NRPF */}
-
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              Specialist Services for Migrant Women with NRPF
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {specialistServices.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] mt-2 underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Domestic Abuse Charities with Specialist Support */}
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              Domestic Abuse Charities with Specialist Support
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {domesticAbuseCharities.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* By- and For-Migrant or BAME-Led Organisations */}
-
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              By- and For-Migrant or BAME-Led Organisations
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {bameLedOrgs.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal & Immigration Advice */}
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              Legal & Immigration Advice
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {legalImmigrationAdvice.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Housing & Welfare Support */}
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              Housing & Welfare Support
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {housingWelfareSupport.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Mental Health & Group Healing */}
-
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              Mental Health & Group Healing
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {mentalHealthGroupHealing.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Post-Crisis Reintegration Support */}
-
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              Post-Crisis Reintegration Support
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {postCrisisReintegration.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Employment, Skills & Reintegration Pathways */}
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              Employment, Skills & Reintegration Pathways
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {employmentSkillsReintegration.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Mental Health & Social Reintegration */}
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              Mental Health & Social Reintegration
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {mentalHealthSocialReintegration.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Housing, Advocacy & Floating Support */}
-          <div className="text-left mb-8">
-            <h3 className="text-2xl font-bold text-[#B89B5E] mb-2">
-              Housing, Advocacy & Floating Support
-            </h3>
-            <ul className="space-y-4 text-gray-700">
-              {housingAdvocacyFloatingSupport.map((item, idx) => (
-                <li key={idx}>
-                  <strong className="text-[#B89B5E]">{item.title}</strong>
-                  <p className="mt-2 text-gray-100 mb-4 tracking-wide">
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link.href}
-                    className="text-[#B89B5E] underline"
-                  >
-                    {item.link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* Repeat the same pattern for all other categories you shared earlier */}
-          {/* Domestic Abuse, BAME-Led Orgs, Legal & Immigration, Housing, Mental Health, etc. */}
-        </section>
-
+        {/* Helpline Section */}
         <section className="w-full mb-12">
-          {/* Section image */}
-          <div className="relative w-full h-[50vh] mb-8">
+          <div className="relative w-full h-[100vh] mb-8">
             <img
-              src="/path/to/your/helpline-banner.jpg" // Replace with your actual image path
+              src="\blog imag\Servicio al cliente_ qué es y cómo brindar una ate.jpeg"
               alt="Emergency helplines support"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -409,7 +171,6 @@ const Blog = () => {
             </div>
           </div>
 
-          {/* Helplines table */}
           <div className="max-w-4xl mx-auto px-4">
             <table className="min-w-full border border-gray-300">
               <thead className="bg-[#B89B5E] text-white">
@@ -419,17 +180,14 @@ const Blog = () => {
                   <th className="py-3 px-4 text-left">Contact</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-700">
+              <tbody className="text-gray-100">
                 <tr className="border-t">
                   <td className="py-3 px-4 font-bold">
                     National Domestic Abuse Helpline (Refuge)
                   </td>
                   <td className="py-3 px-4">24/7 confidential support</td>
                   <td className="py-3 px-4">
-                    <a
-                      href="tel:08082000247"
-                      className="text-blue-600 underline"
-                    >
+                    <a href="tel:08082000247" className="text-white-600 underline">
                       0808 2000 247
                     </a>
                   </td>
@@ -438,13 +196,11 @@ const Blog = () => {
                   <td className="py-3 px-4 font-bold">
                     Rights of Women – Legal Advice
                   </td>
-                  <td className="py-3 px-4">
-                    Family & immigration law helplines
-                  </td>
+                  <td className="py-3 px-4">Family & immigration law helplines</td>
                   <td className="py-3 px-4">
                     <a
                       href="https://rightsofwomen.org.uk/get-advice/"
-                      className="text-blue-600 underline"
+                      className="text-white-600 underline"
                     >
                       See Advice Lines
                     </a>
@@ -456,10 +212,7 @@ const Blog = () => {
                   </td>
                   <td className="py-3 px-4">Local confidential support</td>
                   <td className="py-3 px-4">
-                    <a
-                      href="tel:08002540909"
-                      className="text-blue-600 underline"
-                    >
+                    <a href="tel:08002540909" className="text-white-600 underline">
                       0800 254 0909
                     </a>
                   </td>
@@ -468,14 +221,9 @@ const Blog = () => {
                   <td className="py-3 px-4 font-bold">
                     Joint Council for the Welfare of Immigrants (JCWI)
                   </td>
+                  <td className="py-3 px-4">Legal advice for irregular migrants</td>
                   <td className="py-3 px-4">
-                    Legal advice for irregular migrants
-                  </td>
-                  <td className="py-3 px-4">
-                    <a
-                      href="tel:02075537470"
-                      className="text-blue-600 underline"
-                    >
+                    <a href="tel:02075537470" className="text-white-600 underline">
                       020 7553 7470
                     </a>
                   </td>

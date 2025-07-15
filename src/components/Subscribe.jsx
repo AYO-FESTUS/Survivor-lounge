@@ -11,17 +11,23 @@ const Subscribe = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-4 rounded shadow bg-black">
-      <h3 className="text-xl font-semibold mb-2 text-center text-gray-100">
-        Stay tuned for Updates by signing up for our Newsletter
-      </h3>
+    <div className="w-full max-w-xl mx-auto px-6 py-10 rounded shadow bg-black text-center">
+      <div className="mb-6">
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#B89B5E] mb-2">
+          Subscribe to Our Newsletter
+        </h2>
+        <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+          Stay informed on our updates, events , and support resources.
+        </p>
+      </div>
+
       <form
         onSubmit={handleSubmit}
-        className="w-full flex gap-3  items-center justify-center mb-4"
+        className="w-full flex flex-col sm:flex-row gap-3 items-center justify-center"
       >
         <input
           type="email"
-          className="w-[70%] border border-gray-300 rounded px-3 py-2"
+          className="w-full sm:w-[70%] border border-gray-300 rounded px-4 py-3 bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#B89B5E]"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -29,13 +35,16 @@ const Subscribe = () => {
         />
         <button
           type="submit"
-          className="w-[26%] bg-[#B89B5E] text-white md:px-3 py-2 rounded hover:bg-[#B89B5E]/70 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          Subscribe
+         
+            className="bg-[#B89B5E] text-white font-semibold text-sm sm:text-base px-6 py-3 rounded-md hover:bg-[#A4844E] transition"
+          >
+             Subscribe
+          
         </button>
       </form>
+
       {submitted && (
-        <p className="mt-3 text-green-600 text-center">
+        <p className="mt-4 text-green-500 text-sm">
           Thank you for subscribing!
         </p>
       )}

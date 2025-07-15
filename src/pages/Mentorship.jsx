@@ -9,14 +9,16 @@ const Mentorship = () => {
     <section className="w-full min-h-screen flex flex-col items-center bg-black">
       <div className="relative w-full h-52 bg-cover bg-no-repeat bg-center bg-[url('/images/mentors.jpg')] md:h-96">
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full">
-          <h2 className="font-bold text-4xl mt-4 text-gray-100 text-center md:text-5xl ">
+        <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center text-white max-w-3xl mx-auto">
+          <h1 className="text-4xl sm:text-3xl font-bold mb-4 md:text-5xl">
             A Stronger You, With Support
-          </h2>
-          <p className="mt-2 md:mt-4 text-white text-lg [word-spacing:0.1em] tracking-wide">
-            You don't have to walk alone
-          </p>
-        </div>
+          </h1>
+         
+            <h2 className="text-base sm:text-lg md:text-xl font-medium mb-6 tracking-wider">
+             You don't have to walk alone
+            </h2>
+            </div>
+        
       </div>
 
       <div className="w-full px-8 py-10 flex items-center justify-center gap-10">
