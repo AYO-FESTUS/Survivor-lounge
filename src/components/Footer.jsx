@@ -11,14 +11,14 @@ import { FaLocationPin } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="bg-[#B89B5E] text-white py-6 w-full h-fit flex flex-col items-center">
-      {/* <footer className="w-full px-4 border-2 h-fit flex flex-col items-center gap-6 relative md:pb-10 md:justify-center"> */}
+     
         <div className="w-full flex h-fit md:w-fit">
           {/* <img
             src="/logos/logo-no-bg.png"
             alt=""
             className="h-30 w-28 hidden md:w-40 md:mr-12 md:ml-4 md:mt-2  md:h-30 -ml-4 bg-black rounded-[1rem] shadow-xl"
           /> */}
-          <address className="not-italic text-sm flex flex-col justify-start md:-ml-4">
+          <address className="not-italic ml-13 mb-2 text-sm flex flex-col md:-ml-4">
             <p className="text-lg font-bold mb-1 tracking-wide md:text-2xl md:mb-2 md:font-semibold">
               The Survivors Lounge CIC
             </p>
@@ -71,10 +71,7 @@ const Footer = () => {
           </a>
         </div>
 
-        {/* <div className="text-center [word-spacing:0.1em] tracking-wide flex w-[60%]"> */}
-
-        {/* </div> */}
-      {/* </footer> */}
+      
       <br /><br />
       
       <div className="w-full h-fit md:flex md:justify-center md:items-center md:gap-6">

@@ -28,8 +28,8 @@ const Header = () => {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-black/40 backdrop-blur-md shadow-lg"
-          : "bg-black shadow-md"
+          ? "bg-white/40 backdrop-blur-md shadow-lg"
+          : "bg-white shadow-md"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
@@ -48,7 +48,7 @@ const Header = () => {
               key={item.name}
               to={item.path}
               className={({ isActive }) =>
-                `text-gray-100 hover:text-[#B89B5E]/50 transition ${
+                `text-[#B89B5E] hover:text-[#B89B5E]/70 transition ${
                   isActive ? "font-bold underline" : ""
                 }`
               }
@@ -66,7 +66,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-100"
+          className="md:hidden text-[#B89B5E]"
           onClick={toggleMenu}
           aria-label="Toggle Menu"
         >
@@ -82,7 +82,7 @@ const Header = () => {
               <NavLink
                 key={item.name}
                 to={item.path}
-                className="text-gray-100 hover:text-[#B89B5E]/70 transition py-2"
+                className="text-[#B89B5E] hover:text-[#B89B5E]/70 transition py-2"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.name}
