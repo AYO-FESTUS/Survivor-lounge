@@ -12,11 +12,11 @@ export const mission = [
   {
     id: 3,
     img: "/images/share.jpeg",
-    title: "Signposting to Trusted Support- by connecting survivors and young adults to the right people and organisations.",
+    title: "Signposting to Trusted Support by connecting survivors and young adults to the right people and organisations.",
   },
   {
     id: 4,
     img: "/images/acc.jpeg",
-    title: "Ongoing Mentorship- by providing encouragement and personal growth opportunities so they can rebuild with strength.",
+    title: "Ongoing Mentorship by providing encouragement and personal growth opportunities so they can rebuild with strength.",
   },
 ];

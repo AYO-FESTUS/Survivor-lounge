@@ -92,7 +92,7 @@ const About = () => {
           {mission.map((item) => (
             <div
               key={item.id}
-              className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
+              className="group bg-[#B89B5E] rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
             >
               <div className="h-56 overflow-hidden">
                 <img
@@ -103,7 +103,7 @@ const About = () => {
                 />
               </div>
               <div className="p-6">
-                <h4 className="font-bold text-xl text-[#B89B5E] mb-2">{item.title}</h4>
+                <h4 className="font-bold text-xl  text-gray-800 mb-2">{item.title}</h4>
                 <p className="text-gray-600">{item.description}</p>
               </div>
             </div>

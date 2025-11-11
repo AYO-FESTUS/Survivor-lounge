@@ -30,7 +30,7 @@ const Mentorship = () => {
           />
           <div className="md:w-[43%] py-10 relative">
             <FaQuoteLeft className="text-4xl text-[#B89B5E] absolute left-0 top-12 transform -translate-y-1/2" />
-            <p className="text-lg text-black max-w-2xl mx-auto px-4 py-8 relative z-10 [word-spacing:0.2em] tracking-wider">
+            <p className="text-lg md:text-xl text-gray-800 max-w-3xl text-black max-w-2xl mx-auto px-4 py-8 relative z-10 [word-spacing:0.2em] tracking-wider">
               At The Survivors Lounge CIC, we believe healing happens not just
               through services, but through connection. Our mentorship programme
               pairs survivors and individuals facing personal adversity with
@@ -56,7 +56,7 @@ const Mentorship = () => {
                 src={duty.img}
                 alt=""
               />
-              <h4 className="font-semibold mt-4 text-lg [word-spacing:0.1em] tracking-wide">
+              <h4 className="font-semibold mt-4 text-gray-800 text-lg [word-spacing:0.1em] tracking-wide">
                 {duty.title}
               </h4>
             </div>
@@ -67,7 +67,7 @@ const Mentorship = () => {
           Get a Mentor
         </button>
 
-        <p className="my-6 text-center px-2 text-black ">
+        <p className="my-6 text-center px-2 text-text-gray-800 ">
           Interested in becoming a mentor to help others find their way?{" "}
         </p>
         <a className="no-underline text-[#B89B5E] font-italic hover:underline cursor-pointer mb-2">
@@ -82,7 +82,7 @@ const Mentorship = () => {
             sessions to help survivors gain confidence, employment readiness and
             financial independence.
           </p>
-          <p className="font-bold text-2xl md:text-2xl text-center">What to expect</p>
+          <p className="font-bold text-2xl text-[#B89B5E] md:text-2xl text-center">What to expect</p>
 
           <div className="w-full h-fit md:grid grid-cols-3 mt-6 gap-4 ">
             {skillEnhancements.map((enhancement) => {
@@ -95,7 +95,7 @@ const Mentorship = () => {
                   <div className="border-2 border-[#B89B5E] rounded-lg p-3">
                     <Icon className={`text-3xl ${enhancement.color}`} />
                   </div>
-                  <h4 className="font-semibold text-lg">{enhancement.title}</h4>
+                  <h4 className="font-semibold text-gray-800 text-lg">{enhancement.title}</h4>
                 </div>
               );
             })}
