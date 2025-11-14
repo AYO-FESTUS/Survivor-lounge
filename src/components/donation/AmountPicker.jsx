@@ -61,6 +61,7 @@ export default function DonationAmountPicker() {
   };
 
   return (
+     <div className="w-full bg-gray-100">
     <div className="w-full max-w-2xl mx-auto mt-10 p-6 md:p-8 bg-white rounded-2xl shadow-xl font-sans">
       <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#B89B5E]">
         Make a Donation
@@ -238,36 +239,17 @@ export default function DonationAmountPicker() {
         {/* === SECTION 5: Bank Info (BOLD) === */}
         <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-5 text-center space-y-1">
           <p className="text-base font-bold text-amber-900 uppercase tracking-wider">
-            International Bank Transfer
+           The Co-operative Bank
           </p>
           <p className="text-xl font-black text-amber-800">
-            Account: <span className="underline decoration-2">3456786543356</span>
+            Account: <span className="underline decoration-2">63142264</span>
           </p>
           <p className="text-xs font-medium text-amber-700">
-            First Bank of Nigeria • SWIFT: FBNINGLA
+            SortCode: 08-92-50
           </p>
         </div>
 
-        {/* === SECTION 6: Payment Button === */}
-        <div className="flex justify-center mt-8">
-          {currency === "NGN" ? (
-            <button
-              type="submit"
-              className="w-full max-w-xs bg-green-600 text-white py-4 px-8 rounded-xl font-bold text-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition shadow-lg"
-              disabled={!selectedAmount || !formData.fullName || !formData.email}
-            >
-              Donate with Paystack
-            </button>
-          ) : (
-            <button
-              type="submit"
-              className="w-full max-w-xs bg-indigo-600 text-white py-4 px-8 rounded-xl font-bold text-lg hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition shadow-lg"
-              disabled={!selectedAmount || !formData.fullName || !formData.email}
-            >
-              Donate with PayPal
-            </button>
-          )}
-        </div>
+        
       </form>
 
       {/* Tailwind Styles for fs-* classes */}
@@ -283,6 +265,7 @@ export default function DonationAmountPicker() {
         }
         .fs-input::placeholder { @apply text-gray-400; }
       `}</style>
+    </div>
     </div>
   );
 }
