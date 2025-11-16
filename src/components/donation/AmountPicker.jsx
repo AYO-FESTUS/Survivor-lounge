@@ -98,10 +98,11 @@ export default function DonationAmountPicker() {
               onChange={handleInputChange}
             />
           </div>
-
+        {/* === SECTION 1: Donor Info === */}
+        <div className="space-y-5">
           <div className="fs-field ">
             <label className="fs-label" htmlFor="email">
-              Email Address  <br />
+              Email Address  <span className="text-red-500">*</span>
             </label>
             <input
               className="fs-input w-full border-gray-600 border-2 rounded px-3 py-2 resize-none h-[2rem] md:w-1/3 text-center"
@@ -113,11 +114,16 @@ export default function DonationAmountPicker() {
               value={formData.email}
               onChange={handleInputChange}
             />
+          
           </div>
+          </div>
+
+          
 
           <div className="fs-field ">
             <label className="fs-label" htmlFor="phone">
-              Phone Number
+              Phone Number<span className="text-red-500">*</span>
+            
             </label>
             <input
               className="fs-input w-full border-gray-600 border-2 rounded px-3 py-2 resize-none h-[2rem] md:w-1/3 text-center"
